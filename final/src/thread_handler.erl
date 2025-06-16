@@ -78,7 +78,10 @@ start_thread(Registry, Thread_ID) ->
   if(result == "DNE") ->
     
     
-    
+    find_thread([{Current_PID, Current_Thread_Id} | _], Thread_ID) when Current_Thread_Id == Thread_ID ->
+  Current_PID;
+find_thread([_ | Remainder], Thread_ID) ->
+  find_thread(Remainder, Thread_ID).
     .
     
     
