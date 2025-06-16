@@ -77,6 +77,8 @@ start_thread(Registry, Thread_ID) ->
   result = find_thread(Registry, Thread_ID),
   if(result == "DNE") ->
     
+    
+    
     .
     
     
