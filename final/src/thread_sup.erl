@@ -4,23 +4,37 @@
 %%% @doc
 %%%
 %%% @end
-%%% Created : 15. Jun 2025 20:34
+%%% Created : 16. Jun 2025 21:41
 %%%-------------------------------------------------------------------
 -module(thread_sup).
 -author("Birdh").
 
+-behaviour(supervisor).
+
 %% API
--export([]).
+-export([start_link/0]).
+
+%% Supervisor callbacks
+-export([init/1]).
+
+-define(SERVER, ?MODULE).
 
 
-get_threads() ->
-  
-  .
+%% @doc Starts the supervisor
 
-find_thread(Given_ID) ->
-  
-  .
+start_link() ->
+  supervisor:start_link({local, ?SERVER}, ?MODULE, []).
 
-create_thread() ->
-  spawn(fun() -> memos(#{}) end).
-  .
+init([]) ->
+  {ok, {
+    {one_for_one, 1, 60},
+    [
+      {thread_gen, 
+        {thread_gen, start_link, []},
+        permanent, 
+        5000, 
+        worker, 
+        [thread_gen]}
+
+    ]
+  }}.
