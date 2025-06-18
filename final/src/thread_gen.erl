@@ -33,6 +33,7 @@ get_all_threads() ->
   gen_server:call(?MODULE, getting_all_threads).
 
 -define(SERVER, ?MODULE).
+-record().
 
 -spec(start_link() ->
   {ok, Pid :: pid()} | ignore | {error, Reason :: term()}).
@@ -75,8 +76,22 @@ find_thread(Thread_id, [_ | Tail]) ->
   find_thread(Thread_id, Tail).
 
 
+sort_thread_by_rating([Head | Tail], Sorting_State) ->
+  
+
+  .
+  
+  
+putting_in_state_by_rank([], Thread) ->
+  [Thread];
+putting_in_state_by_rank([Head | Tail], Thread) ->
+  case Thread of
+    {_, _, _, Current_rank, _} = Thread
+
+  
 % casting and calling junk
 
+  
   
 handle_cast({posting_comment, Comment, Thread_id}, State) ->
   {Com_id, User_id, Time, Comment_data} = Comment,
