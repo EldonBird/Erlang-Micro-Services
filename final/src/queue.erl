@@ -30,28 +30,18 @@ dequeue({[], Rear}) ->
 dequeue({[_H | T], Rear}) ->
   {T, Rear}.
 
-
-head({[], []}) -> nil;
+head({[], []}) ->
+  null;
 head({[], Rear}) ->
-  case lists:reverse(Rear) of
-    [] -> nil;
-    [H | _] -> H
-  end;
-head({[H | _], _}) -> H.
+  [H | _] = lists:reverse(Rear),
+  H;
+head({[H | _], _}) ->
+  H.
 
-
-tail({[], []}) -> nil;
-tail({[], Rear}) ->
-  case Rear of
-    [] -> nil;
-    [H | _] -> H
-  end;
-tail({Front, []}) ->
-  case lists:reverse(Front) of
-    [] -> nil;
-    [H | _] -> H
-  end;
-tail({_, [H | _]}) -> H.
+tail({[], []}) ->
+  null;
+tail({[], [H | _]}) ->
+  H.
 
 
 toList({Front, Rear}) ->
